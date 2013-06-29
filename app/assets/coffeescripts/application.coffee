@@ -56,11 +56,12 @@ angular.module("socket-io", []).provider "$socket", ->
 
 @App = angular.module('App', ['socket-io'])
 
-@App.controller 'EditorCtrl', [ '$scope', '$socket', ($scope, $socket) ->
-  $socket.forward 'hello-world', $scope
-  $scope.$on 'hello-world', (ev, data) ->
-    $scope.message = data.message
+@App.controller 'DocumentCtrl', [ '$scope', '$socket', ($scope, $socket) ->
+  $socket.forward 'document:sync:completed', $scope
+  $scope.$on 'document:sync:completed', (ev, data) ->
+    $scope.content = data.content
 
-  $scope.click = ->
-    $socket.emit 'hello-world'
+  $scope.sync = ->
+    $socket.emit 'document:sync', content: $scope.content, timestamp: new Date().getTime()
 ]
+

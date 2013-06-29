@@ -61,14 +61,17 @@
 
   this.App = angular.module('App', ['socket-io']);
 
-  this.App.controller('EditorCtrl', [
+  this.App.controller('DocumentCtrl', [
     '$scope', '$socket', function($scope, $socket) {
-      $socket.forward('hello-world', $scope);
-      $scope.$on('hello-world', function(ev, data) {
-        return $scope.message = data.message;
+      $socket.forward('document:sync:completed', $scope);
+      $scope.$on('document:sync:completed', function(ev, data) {
+        return $scope.content = data.content;
       });
-      return $scope.click = function() {
-        return $socket.emit('hello-world');
+      return $scope.sync = function() {
+        return $socket.emit('document:sync', {
+          content: $scope.content,
+          timestamp: new Date().getTime()
+        });
       };
     }
   ]);

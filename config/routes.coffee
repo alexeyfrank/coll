@@ -1,8 +1,9 @@
 exports.routes = (map)->
   map.root('welcome#index');
-  map.resources 'document'
+  map.resources 'documents'
 
-  map.socket('hello-world', 'hello#world');
+  map.socket('document:sync', 'document#sync');
+
   # Generic routes. Add all your routes below this line
   # feel free to remove generic routes
   map.all ':controller/:action'
