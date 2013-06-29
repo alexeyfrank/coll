@@ -7,5 +7,5 @@ action 'sync', ->
   document.save
 
 
-Document.findOne({order: 'timestamp DESC'}, (err, doc) ->
-  io().broadcast.emit 'message', doc[0]
+  Document.findOne {order: 'timestamp DESC'}, (err, doc) ->
+    io().broadcast.emit 'message', doc[0]
