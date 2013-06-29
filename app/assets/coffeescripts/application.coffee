@@ -25,7 +25,7 @@
       $scope.lastChange = editor.getValue()
       $socket.emit 'document:sync', 
         document:
-          content: value,
+          content: $scope.lastChange,
           timestamp: new Date().getTime()  
       $scope.needSend = false
   , 2000
