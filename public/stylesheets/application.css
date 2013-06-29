@@ -1,3 +1,10 @@
 body {
   background: #fff;
 }
+.wrapper {
+  text-align: center;
+}
+.center {
+  position: absolute;
+  top: 50%;
+}
