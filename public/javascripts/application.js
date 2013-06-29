@@ -9,6 +9,7 @@
       editor = CodeMirror(function(elt) {
         return textarea.parentNode.replaceChild(elt, textarea);
       });
+      editor.on('change', function(doc) {});
       setInterval(function() {
         var value;
         value = editor.getValue();

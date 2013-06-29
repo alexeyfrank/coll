@@ -9,6 +9,8 @@
   editor = CodeMirror (elt) ->
     textarea.parentNode.replaceChild(elt, textarea)
 
+  editor.on 'change', (doc) ->
+
   setInterval ->
     value = editor.getValue()
     $socket.emit 'document:sync', 
