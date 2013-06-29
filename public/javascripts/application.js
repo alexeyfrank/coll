@@ -31,13 +31,13 @@
         }
       }, 2000);
       return $socket.on('message', function(data) {
+        var newStr, scrollInfo;
         if ($scope.lastChange !== data.content) {
           $scope.lastChange = data.content;
-          console.log(editor.getScrollInfo());
-          editor.setValue(data.content);
-          if (savedSel) {
-            return rangy.restoreSelection(savedSel, true);
-          }
+          scrollInfo = editor.getCursor();
+          newStr = JsDiff.applyPatch(editor.getValue(), data.content);
+          editor.setValue(newStr);
+          return editor.setCursor(scrollInfo);
         }
       });
     }

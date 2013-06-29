@@ -2,7 +2,8 @@ module.exports = (compound) ->
   defaultModules = [
     'jugglingdb',
     'co-assets-compiler',
-    'co-socket'
+    'co-socket',
+    'diff'
   ]
 
   developmentModules = []
