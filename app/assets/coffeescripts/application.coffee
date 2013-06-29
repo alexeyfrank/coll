@@ -16,16 +16,16 @@
   editor = CodeMirror (elt) -> textarea.parentNode.replaceChild(elt, textarea)
 
   isEnter = (obj) ->
-    if obj.origin == '+input' && obj.text.length == 2
+    obj.origin == '+input' && obj.text.length == 2
   isBackspace = (obj) ->
-    if obj.origin == '+delete' && obj.removed.length == 2
+    obj.origin == '+delete' && obj.removed.length == 2
 
 
   editor.on 'change', (doc, obj) ->
     if isEnter(obj)
       $scope.pos.line++
     else if isBackspace(obj)
-      $scope.pos.ch--
+      $scope.pos.line--
     if obj.origin == '+input'
       $scope.pos.ch++
     else if obj.origin == '+delete'
