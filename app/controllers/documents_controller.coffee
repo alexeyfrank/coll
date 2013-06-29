@@ -11,4 +11,4 @@ action 'sync', ->
     document.save (err) ->
       patch = JsDiff.createPatch('', oldContent, newContent, '', '')
       console.log(patch)
-      io().sockets.emit 'message', pos: params.position, posDiff: params.posDiff, diff: patch, content: document.content if doc
+      io().sockets.emit 'message', position: params.position, posDiff: params.posDiff, diff: patch, content: document.content if doc
