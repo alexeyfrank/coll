@@ -1,14 +1,14 @@
-angular.module("socket-io", []).provider "$socket", ->
+angular.module("socket.io", []).provider "$socket", ->
   
   # when forwarding events, prefix the event name
-  prefix = "socket:"
+  prefix = ""
   
   # expose to provider
   @$get = ($rootScope, $timeout) ->
     socket = io.connect()
     asyncAngularify = (callback) ->
       ->
-        args = arguments_
+        args = arguments
         $timeout (->
           callback.apply socket, args
         ), 0
