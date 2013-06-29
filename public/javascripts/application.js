@@ -11,7 +11,8 @@
       editor = CodeMirror(function(elt) {
         return textarea.parentNode.replaceChild(elt, textarea);
       });
-      editor.on('change', function(doc) {
+      editor.on('change', function(doc, obj) {
+        console.log(obj);
         if ($scope.lastChange === editor.getValue()) {
           return $scope.needSend = false;
         } else {
@@ -29,13 +30,14 @@
           });
           return $scope.needSend = false;
         }
-      }, 2000);
+      }, 1);
       return $socket.on('message', function(data) {
-        var newStr, scrollInfo;
+        var newStr, patch, scrollInfo;
         if ($scope.lastChange !== data.content) {
           $scope.lastChange = data.content;
+          patch = JsDiff.createPatch('', editor.getValue(), data.content, '', '');
           scrollInfo = editor.getCursor();
-          newStr = JsDiff.applyPatch(editor.getValue(), data.content);
+          newStr = JsDiff.applyPatch(editor.getValue(), patch);
           editor.setValue(newStr);
           return editor.setCursor(scrollInfo);
         }
