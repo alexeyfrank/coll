@@ -5,4 +5,5 @@ action 'sync', ->
 
   document = new Document(params.document)
   document.save
-  io().sockets.emit('document:sync:completed', document);
+
+  io().sockets.emit 'message', document

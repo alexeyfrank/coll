@@ -19,7 +19,7 @@
         timestamp: new Date().getTime()  
   , 2000
 
-  $scope.$on 'document:sync:completed', (ev, data) ->
+  $socket.on 'message', (data) ->
     editor.setValue(data.content)
 ]
 

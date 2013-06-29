@@ -20,7 +20,7 @@
           }
         });
       }, 2000);
-      return $scope.$on('document:sync:completed', function(ev, data) {
+      return $socket.on('message', function(data) {
         return editor.setValue(data.content);
       });
     }
