@@ -6,6 +6,7 @@
       var editor, textarea;
       $socket.forward('document:sync:completed', $scope);
       textarea = document.getElementById('text');
+      $scope.lastChange = "";
       $scope.fromSocket = false;
       $scope.needSend = true;
       editor = CodeMirror(function(elt) {
@@ -20,12 +21,11 @@
         }
       });
       setInterval(function() {
-        var value;
         if ($scope.needSend) {
-          value = editor.getValue();
+          $scope.lastChange = editor.getValue();
           $socket.emit('document:sync', {
             document: {
-              content: value,
+              content: $scope.lastChange,
               timestamp: new Date().getTime()
             }
           });
@@ -33,8 +33,10 @@
         }
       }, 2000);
       return $socket.on('message', function(data) {
-        $scope.fromSocket = true;
-        return editor.setValue(data.content);
+        if ($scope.lastChange !== data.content) {
+          $scope.fromSocket = true;
+          return editor.setValue(data.content);
+        }
       });
     }
   ]);
