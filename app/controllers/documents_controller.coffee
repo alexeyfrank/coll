@@ -6,4 +6,4 @@ action 'sync', ->
   document = new Document(params.document)
   document.save (err) ->
     Document.findOne {order: 'timestamp DESC'}, (err, doc) ->
-      io().broadcast.emit 'message', doc if doc
+      io().sockets.emit 'message', doc if doc
