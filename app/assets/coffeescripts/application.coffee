@@ -30,8 +30,9 @@
   $socket.on 'message', (data) ->
     if ($scope.lastChange != data.content)
       $scope.lastChange = data.content
+      patch = JsDiff.createPatch('', editor.getValue(), data.content, '', '')
       scrollInfo = editor.getCursor()
-      newStr = JsDiff.applyPatch(editor.getValue(), data.diff)
+      newStr = JsDiff.applyPatch(editor.getValue(), patch)
       editor.setValue(newStr)
       editor.setCursor scrollInfo
 
