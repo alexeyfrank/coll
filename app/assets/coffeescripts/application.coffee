@@ -9,8 +9,7 @@
   $scope.lastChange = ""
   $scope.needSend = false
 
-  editor = CodeMirror (elt) ->
-    textarea.parentNode.replaceChild(elt, textarea)
+  editor = CodeMirror (elt) -> textarea.parentNode.replaceChild(elt, textarea)
 
   editor.on 'change', (doc) ->
     if $scope.lastChange == editor.getValue()
@@ -32,7 +31,8 @@
     if ($scope.lastChange != data.content)
       $scope.lastChange = data.content
       scrollInfo = editor.getCursor()
-      editor.setValue(data.content)
+      newStr = JsDiff.applyPatch(editor.getValue(), data.content)
+      editor.setValue(newStr)
       editor.setCursor scrollInfo
 
 ]
