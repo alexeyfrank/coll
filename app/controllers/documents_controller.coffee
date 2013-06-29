@@ -5,4 +5,5 @@ action 'show', ->
     title: "documents#show"
 
 action 'sync', ->
+  console.log 'sync log'
   socket().emit('document:sync:completed', content: 'TODO: set content')
