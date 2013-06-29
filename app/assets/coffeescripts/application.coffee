@@ -9,6 +9,8 @@
   $scope.lastChange = ""
   $scope.needSend = false
 
+  $scope.key = new Date().getTime()
+
   $scope.pos = 
     line: 0
     ch: 0
@@ -47,7 +49,8 @@
           positionCh: cursor.ch,
           positionLine: cursor.line,
           content: $scope.lastChange,
-          timestamp: new Date().getTime()  
+          timestamp: new Date().getTime() 
+          key: $scope.key 
       $scope.pos = 
         line: 0
         ch: 0
@@ -55,9 +58,10 @@
   , 1
 
   $socket.on 'message', (data) ->
+    return if $scope.key == data.key
     if ($scope.lastChange != data.content)
       cursor = editor.getCursor()
-      if (cursor.line >= data.position.line && cursor.ch >= data.position.ch)
+      if (cursor.line > data.position.line && cursor.ch > data.position.ch)
         if cursor.line != data.position.line
           cursor.line = cursor.line + data.posDiff.line
         else  

@@ -7,6 +7,7 @@ Document = describe 'Document', ->
     property 'posDiffLine', String
     property 'positionCh', String
     property 'positionLine', String
+    property 'key', String
     set 'restPath', pathTo.documents
 
 DocumentSession = describe 'DocumentSession', ->

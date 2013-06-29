@@ -25,6 +25,8 @@ angular.module("socket.io", []).provider "$socket", ->
         else
           socket.emit eventName, data
 
+      socket: socket,
+
       removeListener: ->
         args = arguments_
         socket.removeListener.apply socket, args

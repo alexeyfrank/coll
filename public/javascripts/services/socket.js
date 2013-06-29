@@ -27,6 +27,7 @@
             return socket.emit(eventName, data);
           }
         },
+        socket: socket,
         removeListener: function() {
           var args;
           args = arguments_;
