@@ -31,7 +31,7 @@
     if ($scope.lastChange != data.content)
       $scope.lastChange = data.content
       scrollInfo = editor.getCursor()
-      newStr = JsDiff.applyPatch(editor.getValue(), data.content)
+      newStr = JsDiff.applyPatch(editor.getValue(), data.diff)
       editor.setValue(newStr)
       editor.setCursor scrollInfo
 
