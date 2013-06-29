@@ -15,7 +15,8 @@
     "stylus": "latest",
     "seedjs": "latest",
     "co-assets-compiler": "*",
-    "co-socket": "0.0.1-3"
+    "co-socket": "0.0.1-3",
+    "jugglingdb-redis": "0.0.2-2"
   },
   "devDependencies": {
     "nodeunit": "*",

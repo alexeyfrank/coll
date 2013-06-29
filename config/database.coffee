@@ -1,6 +1,8 @@
 module.exports = 
   development:
-    driver: "memory"
+    driver: "redis"
+    host: "localhost"
+    port: 6379
 
   test:
     driver: "memory"
