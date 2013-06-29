@@ -6,6 +6,7 @@
   $socket.forward 'document:sync:completed', $scope
   textarea = document.getElementById('text')
   
+  $scope.lastChange = ""
   $scope.fromSocket = false
   $scope.needSend = true
 
@@ -21,7 +22,7 @@
 
   setInterval ->
     if $scope.needSend
-      value = editor.getValue()
+      $scope.lastChange = editor.getValue()
       $socket.emit 'document:sync', 
         document:
           content: value,
@@ -30,7 +31,8 @@
   , 2000
 
   $socket.on 'message', (data) ->
-    $scope.fromSocket = true
-    editor.setValue(data.content)
+    if ($scope.lastChange != data.content)
+      $scope.fromSocket = true
+      editor.setValue(data.content)
 ]
 
