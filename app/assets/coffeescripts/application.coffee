@@ -39,10 +39,13 @@
   setInterval ->
     if $scope.needSend
       $scope.lastChange = editor.getValue()
+      cursor = editor.getCursor()
       $socket.emit 'document:sync', 
-        position: editor.getCursor(),
-        posDiff: $scope.pos,
         document:
+          posDiffCh: $scope.pos.ch,
+          posDiffLine: $scope.pos.line,
+          positionCh: cursor.ch,
+          positionLine: cursor.line,
           content: $scope.lastChange,
           timestamp: new Date().getTime()  
       $scope.pos = 

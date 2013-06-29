@@ -3,6 +3,10 @@ Document = describe 'Document', ->
     property 'document_session_id', String
     property 'content', String
     property 'timestamp', String
+    property 'posDiffCh', String
+    property 'posDiffLine', String
+    property 'positionCh', String
+    property 'positionLine', String
     set 'restPath', pathTo.documents
 
 DocumentSession = describe 'DocumentSession', ->

@@ -5,6 +5,7 @@ action 'sync', ->
   lastDocument = new Document(params.document)
   app.heap.push(lastDocument)  
 
-  firstDocument = app.heap.pop()
-  firstDocument.save (err) ->
-    io().sockets.emit 'message', position: params.position, posDiff: params.posDiff, content: firstDocument.content
+  while !app.heap.empty()
+    doc = app.heap.pop()
+    doc.save (err) ->
+      io().sockets.emit 'message', position: { ch: doc.positionCh, line: doc.positionLine}, posDiff: {ch: doc.posDiffCh, line: doc.posDiffLine}, content: firstDocument.content
