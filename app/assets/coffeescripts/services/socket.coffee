@@ -1,16 +1,14 @@
-#=require_tree ./
-
 angular.module("socket-io", []).provider "$socket", ->
   
   # when forwarding events, prefix the event name
-  prefix = ""
+  prefix = "socket:"
   
   # expose to provider
   @$get = ($rootScope, $timeout) ->
     socket = io.connect()
     asyncAngularify = (callback) ->
       ->
-        args = arguments
+        args = arguments_
         $timeout (->
           callback.apply socket, args
         ), 0
@@ -52,15 +50,3 @@ angular.module("socket-io", []).provider "$socket", ->
 
   @prefix = (newPrefix) ->
     prefix = newPrefix
-
-
-@App = angular.module('App', ['socket-io'])
-
-@App.controller 'EditorCtrl', [ '$scope', '$socket', ($scope, $socket) ->
-  $socket.forward 'hello-world', $scope
-  $scope.$on 'hello-world', (ev, data) ->
-    $scope.message = data.message
-
-  $scope.click = ->
-    $socket.emit 'hello-world'
-]

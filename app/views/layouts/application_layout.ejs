@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="App">
     <head>
         <title><%= title %></title>
         <%- stylesheetLinkTag('bootstrap', 'application', 'bootstrap-responsive') %>
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js"></script>
         <script src="/socket.io/socket.io.js"></script>
         <%- javascriptIncludeTag('http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js', 'bootstrap', 'rails', 'application') %>
         <%- csrfMetaTag() %>

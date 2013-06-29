@@ -1,4 +1,4 @@
 load 'application'
 
 action 'world', ->
-  socket().emit('hello-world', {data: 'hello world from socket io!'});
+  socket().emit('hello-world', {message: 'hello world from socket io!'});
