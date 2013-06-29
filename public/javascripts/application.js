@@ -9,16 +9,16 @@
       editor = CodeMirror(function(elt) {
         return textarea.parentNode.replaceChild(elt, textarea);
       });
-      editor.on('change', function(doc) {
+      setInterval(function() {
         var value;
-        value = doc.getValue();
+        value = editor.getValue();
         return $socket.emit('document:sync', {
           document: {
             content: value,
             timestamp: new Date().getTime()
           }
         });
-      });
+      }, 2000);
       return $scope.$on('document:sync:completed', function(ev, data) {
         return editor.setValue(data.content);
       });

@@ -9,12 +9,13 @@
   editor = CodeMirror (elt) ->
     textarea.parentNode.replaceChild(elt, textarea)
 
-  editor.on 'change', (doc) ->
-    value = doc.getValue()
+  setInterval ->
+    value = editor.getValue()
     $socket.emit 'document:sync', 
       document:
         content: value,
         timestamp: new Date().getTime()  
+  , 2000
 
   $scope.$on 'document:sync:completed', (ev, data) ->
     editor.setValue(data.content)
