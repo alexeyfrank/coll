@@ -7,18 +7,16 @@
   textarea = document.getElementById('text')
   
   $scope.lastChange = ""
-  $scope.fromSocket = false
-  $scope.needSend = true
+  $scope.needSend = false
 
   editor = CodeMirror (elt) ->
     textarea.parentNode.replaceChild(elt, textarea)
 
   editor.on 'change', (doc) ->
-    if $scope.fromSocket
+    if $scope.lastChange == editor.getValue()
       $scope.needSend = false
-      $scope.fromSocket = false
     else
-     $scope.needSend = true
+      $scope.needSend = true
 
   setInterval ->
     if $scope.needSend
@@ -32,7 +30,11 @@
 
   $socket.on 'message', (data) ->
     if ($scope.lastChange != data.content)
-      $scope.fromSocket = true
+      $scope.lastChange = data.content
+      savedSel = rangy.saveSelection()
       editor.setValue(data.content)
+      if savedSel
+        rangy.restoreSelection savedSel, true
+
 ]
 
