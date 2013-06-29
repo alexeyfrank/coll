@@ -1,8 +1,6 @@
 exports.routes = (map)->
   map.root('welcome#index');
-
-  map.resources 'posts'
-
+  map.resources 'document'
 
   map.socket('hello-world', 'hello#world');
   # Generic routes. Add all your routes below this line
