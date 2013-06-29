@@ -25,7 +25,7 @@
     if isEnter(obj)
       $scope.pos.line++
     else if isBackspace(obj)
-      $scope.pos.line--
+      $scope.pos.ch--
     if obj.origin == '+input'
       $scope.pos.ch++
     else if obj.origin == '+delete'
@@ -55,8 +55,10 @@
     if ($scope.lastChange != data.content)
       cursor = editor.getCursor()
       if (cursor.line >= data.position.line && cursor.ch >= data.position.ch)
-        cursor.line = cursor.line + data.posDiff.line
-        cursor.ch = cursor.ch + data.posDiff.ch
+        if cursor.line != data.position.line
+          cursor.line = cursor.line + data.posDiff.line
+        else  
+          cursor.ch = cursor.ch + data.posDiff.ch
 
       $scope.lastChange = data.content
       patch = JsDiff.createPatch('', editor.getValue(), data.content, '', '')
