@@ -25,7 +25,7 @@
           content: $scope.lastChange,
           timestamp: new Date().getTime()  
       $scope.needSend = false
-  , 2000
+  , 1
 
   $socket.on 'message', (data) ->
     if ($scope.lastChange != data.content)
