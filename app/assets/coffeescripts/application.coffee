@@ -31,10 +31,9 @@
   $socket.on 'message', (data) ->
     if ($scope.lastChange != data.content)
       $scope.lastChange = data.content
-      savedSel = rangy.saveSelection()
+      scrollInfo = editor.getScrollInfo()
       editor.setValue(data.content)
-      if savedSel
-        rangy.restoreSelection savedSel, true
+      editor.scrollTo scrollInfo
 
 ]
 
