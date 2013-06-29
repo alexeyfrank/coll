@@ -63,6 +63,13 @@
 
   this.App.controller('DocumentCtrl', [
     '$scope', '$socket', function($scope, $socket) {
+      var myCodeMirror, textarea;
+      textarea = document.getElementById('textarea');
+      myCodeMirror = CodeMirror(function(elt) {
+        return textarea.parentNode.replaceChild(elt, textarea);
+      }, {
+        value: textarea.value
+      });
       $socket.forward('document:sync:completed', $scope);
       $scope.$on('document:sync:completed', function(ev, data) {
         return $scope.content = data.content;

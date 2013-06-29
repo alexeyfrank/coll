@@ -57,6 +57,12 @@ angular.module("socket-io", []).provider "$socket", ->
 @App = angular.module('App', ['socket-io'])
 
 @App.controller 'DocumentCtrl', [ '$scope', '$socket', ($scope, $socket) ->
+  textarea = document.getElementById('textarea')
+  myCodeMirror = CodeMirror (elt) ->
+    textarea.parentNode.replaceChild(elt, textarea)
+  ,
+  { value: textarea.value} 
+
   $socket.forward 'document:sync:completed', $scope
   $scope.$on 'document:sync:completed', (ev, data) ->
     $scope.content = data.content
