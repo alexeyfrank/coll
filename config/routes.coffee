@@ -1,4 +1,6 @@
 exports.routes = (map)->
+  map.root('welcome#index');
+
   map.resources 'posts'
 
 
