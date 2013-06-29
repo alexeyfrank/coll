@@ -3,7 +3,8 @@ module.exports = (compound) ->
     'jugglingdb',
     'co-assets-compiler',
     'co-socket',
-    'diff'
+    'diff',
+    'heap'
   ]
 
   developmentModules = []

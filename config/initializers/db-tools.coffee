@@ -1,5 +1,11 @@
 module.exports = (compound) ->
+
+  Heap = require("heap")
+  
   app = compound.app
+  app.heap = new Heap((a, b) ->
+    b.timestamp - a.timestamp
+  )
   compound.tools.database = ()->
     action = process.argv[3]
     switch action
