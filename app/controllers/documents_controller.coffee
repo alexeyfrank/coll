@@ -5,8 +5,13 @@ action 'show', ->
     title: "documents#show"
 
 action 'create', ->
-  render 'show',
-    title: 'New post'
+  Document.create body.Document, (err, document) =>
+    if err
+      flash 'error', 'Document can not be created'
+      redirect path_to.root
+    else
+      flash 'info', 'Document created'
+      redirect path_to.document(document.id)
 
 action 'sync', ->
   console.log 'sync log'
