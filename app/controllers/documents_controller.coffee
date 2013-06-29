@@ -6,4 +6,4 @@ action 'sync', ->
   document = new Document(params.document)
   document.save
 
-  io().sockets.emit 'message', document
+  io().broadcast.emit 'message', document
