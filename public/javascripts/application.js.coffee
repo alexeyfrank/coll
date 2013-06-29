@@ -1,3 +1,8 @@
+/*
+  Add your application's coffee-script code here
+*/
+
+
 $ ->
   socket = io.connect()
   socket.on 'hello-world', (data) ->
