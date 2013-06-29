@@ -1,6 +1,5 @@
 exports.routes = (map)->
   map.root('welcome#index');
-  map.resources 'documents'
 
   map.socket('document:sync', 'documents#sync');
 

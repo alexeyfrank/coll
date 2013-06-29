@@ -1,5 +1,9 @@
 load 'application'
 
 action 'sync', ->
-  console.log 'sync log'
-  socket().emit('document:sync:completed', content: 'TODO: set content')
+  #console.log params()
+
+  document = new Document(params.document)
+  document.save
+
+  socket().broadcast.send(content: 'TODO: set content')
