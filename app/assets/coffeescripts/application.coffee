@@ -31,9 +31,9 @@
   $socket.on 'message', (data) ->
     if ($scope.lastChange != data.content)
       $scope.lastChange = data.content
-      scrollInfo = editor.getScrollInfo()
+      scrollInfo = editor.getCursor()
       editor.setValue(data.content)
-      editor.scrollTo scrollInfo
+      editor.setCursor scrollInfo
 
 ]
 
