@@ -10,7 +10,7 @@ action 'connect', ->
 action 'sync', ->
   doc = new Document(params.document)
   doc.save (err) ->
-    io().sockets.in(params.documentSessionId).emit 'message',
+    socket(params.documentSessionId).emit 'message',
       position: 
         ch: doc.positionCh
         line: doc.positionLine
