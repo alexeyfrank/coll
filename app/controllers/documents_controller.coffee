@@ -1,6 +1,7 @@
 load 'application'
 
 action 'sync', ->
+  socket.join(params.documentSessionId)
   doc = new Document(params.document)
   doc.save (err) ->
     io().sockets.in(params.documentSessionId).emit 'message',
