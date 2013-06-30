@@ -43,8 +43,8 @@
       $scope.lastChange = editor.getValue()
       cursor = editor.getCursor()
       $socket.emit 'document:sync', 
-        documentSessionId: $('#document-session-id').val()
         document:
+          document_session_id: $('#document-session-id').val()
           posDiffCh: $scope.pos.ch,
           posDiffLine: $scope.pos.line,
           positionCh: cursor.ch,
