@@ -1,11 +1,15 @@
 <div ng-controller="DocumentCtrl">
-  <input type="hidden" id="document-session-id" value="<%= params.id %>" style="width:90%; height:95%;" />  
-  <textarea id="text"></textarea>
-
-  <ul>
-      <% for(var i = 0; i < versions.length; i++) { %>
-         <li><a href="<%= path_to.versions %>">Show previos versions</a></li>
-      <% } %>
-  </ul>
+  <div class="span8">
+    <input type="hidden" id="document-session-id" value="<%= params.id %>" style="width:60%; height:95%;" />  
+    <textarea id="text"></textarea>
+  </div>
+  <div class="span3 well">
+    <ul class="nav nav-list" style='width:250px;'>
+        <li class="nav-header">Список версий</li>
+        <% for(var i = 0; i < versions.length; i++) { %>
+           <li><a href="/document_sessions/versions/<%= versions[i].id %>"><%- new Date(versions[i].timestamp).toString() %></a></li>
+        <% } %>
+    </ul>
+  <div>
 
 </div>

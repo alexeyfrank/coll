@@ -21,7 +21,7 @@
   lineNumbers:true
   tabSize: 2
 
-  editor.setSize 1300, 600
+  editor.setSize 700, 600
 
 
   isEnter = (obj) ->

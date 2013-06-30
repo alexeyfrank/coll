@@ -19,7 +19,7 @@
         lineNumbers: true,
         tabSize: 2
       });
-      editor.setSize(1300, 600);
+      editor.setSize(700, 600);
       isEnter = function(obj) {
         return obj.origin === '+input' && obj.text.length === 2;
       };

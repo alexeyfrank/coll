@@ -2,7 +2,7 @@ load 'application'
 
 action 'show', ->
   v = 1
-  Document.all {where: {id: params.id}, order: 'timestamp'}, (err, versions) ->
+  Document.all {where: {document_session_id: params.id}, order: 'timestamp'}, (err, versions) ->
     if versions
       v = versions
 
@@ -23,8 +23,11 @@ action 'create', ->
 
 action 'versions', ->
   Document.findOne {order: 'timestamp DESC'}, (err, old_doc) ->
-    Document.find {id: params.id}, (err, new_doc) ->
-      render
+    console.log(params.id)
+    Document.find params.id, (err, new_doc) ->
+      console.log new_doc
+      console.log old_doc
+      render 'versions',
         new_doc: new_doc
         old_doc: old_doc
         title: "versions"

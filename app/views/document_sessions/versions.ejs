@@ -2,10 +2,10 @@
 	<input hidden type="radio" name="diff_type" value="diffChars" checked>
 </div>
 
-<table>
+<table class="table table-striped table-bordered">
 	<tr>
-		<td contenteditable="true" id="a"><%- new_doc.content %></td>
-		<td contenteditable="true" id="b"><%- old_doc.content %></td>
+		<td><pre id="a"><%- new_doc.content %></pre></td>
+		<td><pre id="b"><%- old_doc.content %></pre></td>
 		<td><pre id="result"></pre></td>
 	</tr>
 </table>
