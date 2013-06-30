@@ -61,11 +61,11 @@
     return if $scope.key == data.key
     if ($scope.lastChange != data.content)
       cursor = editor.getCursor()
-      if (cursor.line >= data.position.line && cursor.ch >= data.position.ch)
+      if (cursor.line >= parseInt(data.position.line) && cursor.ch >= parseInt(data.position.ch))
         if cursor.line != parseInt(data.position.line)
-          cursor.line = cursor.line + data.posDiff.line
+          cursor.line = cursor.line + parseInt(data.posDiff.line)
         else  
-          cursor.ch = cursor.ch + data.posDiff.ch
+          cursor.ch = cursor.ch + parseInt(data.posDiff.ch)
 
       $scope.lastChange = data.content
       patch = JsDiff.createPatch('', editor.getValue(), data.content, '', '')
