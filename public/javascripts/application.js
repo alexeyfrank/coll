@@ -20,7 +20,7 @@
         lineNumbers: true,
         tabSize: 2
       });
-      editor.setSize(700, 600);
+      editor.setSize(650, 600);
       isEnter = function(obj) {
         return obj.origin === '+input' && obj.text.length === 2;
       };
@@ -72,7 +72,7 @@
       }, 1);
       setInterval(function() {
         return $scope.to_version_list = "true";
-      }, 5000);
+      }, 3000);
       $socket.on('document:connect:success', function(data) {
         $scope.lastChange = data.content;
         return editor.setValue(data.content);
