@@ -1,8 +1,15 @@
 load 'application'
 
 action 'show', ->
-  render
-    title: "documents#show"
+  v = 1
+  Document.all {where: {id: params.id}, order: 'timestamp'}, (err, versions) ->
+    if versions
+      v = versions
+
+    render 'show',
+      title: "documents#show",
+      versions: v
+
 
 action 'create', ->
   DocumentSession.create body.DocumentSession, (err, document_session) =>

@@ -1,6 +1,5 @@
 load 'application'
 
-
 action 'connect', ->
   custom_socket().join(params.documentSessionId)
   Document.findOne {where: {document_session_id: params.documentSessionId}, order: 'timestamp DESC'}, (err, doc) ->

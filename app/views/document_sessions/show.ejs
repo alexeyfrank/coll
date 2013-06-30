@@ -1,5 +1,11 @@
 <div ng-controller="DocumentCtrl">
   <input type="hidden" id="document-session-id" value="<%= params.id %>" style="width:90%; height:95%;" />  
   <textarea id="text"></textarea>
-  <a class="btn btn-primary btn-large center" href="<%= path_to.versions %>">Show previos versions</a>
+
+  <ul>
+      <% for(var i = 0; i < versions.length; i++) { %>
+         <li><a href="<%= path_to.versions %>">Show previos versions</a></li>
+      <% } %>
+  </ul>
+
 </div>
