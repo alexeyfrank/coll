@@ -9,7 +9,7 @@
   $scope.lastChange = ""
   $scope.needSend = false
 
-  $scope.key = new Date().getTime()
+  $scope.key = new Date().getTime().toString()
 
   $scope.pos = 
     line: 0
