@@ -1,5 +1,7 @@
 load 'application'
 
 action 'index', ->
-  render
-    title: "welcome#index"
+  DocumentSession.all (err, rooms) ->
+    render 'index',
+      title: 'Code collaboration'
+      rooms: rooms

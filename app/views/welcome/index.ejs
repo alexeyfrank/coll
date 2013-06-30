@@ -1,5 +1,28 @@
 <div class="wrapper">
-  <a class="btn btn-primary btn-large center" data-method="post" href="<%= path_to.document_sessions %>">Сдлт збс</a>
+  <a class="btn btn-primary btn-large" style="text-align:center;" data-method="post" href="<%= path_to.document_sessions %>">Создать комнату</a>
+        <% if (rooms.length != 0) { %>
+    <br />
+    <br />
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th width="800">ID</th>
+          <th width="20">#</th>
+        </tr>
+      </thead>
+      <tbody>
+          <% rooms.forEach(function(room) { %>
+          <tr>
+            <td width="800"><%- room.id %></td>
+            <td width="20"><a href="<%- path_to.document_session(room) %>" class="btn btn-info">Перейти</a></td>
+          </tr>
+
+          <% }); %>
+      </tbody>
+    </table>
+
+        <% } %>
+
 </div>
  
 

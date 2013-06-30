@@ -15,7 +15,14 @@
     line: 0
     ch: 0
 
-  editor = CodeMirror (elt) -> textarea.parentNode.replaceChild(elt, textarea)
+  editor = CodeMirror (elt) ->
+    textarea.parentNode.replaceChild(elt, textarea)
+  ,
+  lineNumbers:true
+  tabSize: 2
+
+  editor.setSize 1300, 600
+
 
   isEnter = (obj) ->
     obj.origin == '+input' && obj.text.length == 2

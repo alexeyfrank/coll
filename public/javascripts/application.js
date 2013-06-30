@@ -15,7 +15,11 @@
       };
       editor = CodeMirror(function(elt) {
         return textarea.parentNode.replaceChild(elt, textarea);
+      }, {
+        lineNumbers: true,
+        tabSize: 2
       });
+      editor.setSize(1300, 600);
       isEnter = function(obj) {
         return obj.origin === '+input' && obj.text.length === 2;
       };
@@ -45,8 +49,8 @@
           $scope.lastChange = editor.getValue();
           cursor = editor.getCursor();
           $socket.emit('document:sync', {
-            documentSessionId: $('#document-session-id').val(),
             document: {
+              document_session_id: $('#document-session-id').val(),
               posDiffCh: $scope.pos.ch,
               posDiffLine: $scope.pos.line,
               positionCh: cursor.ch,
