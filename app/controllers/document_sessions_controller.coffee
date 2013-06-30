@@ -15,5 +15,9 @@ action 'create', ->
 
 
 action 'versions', ->
-  render
-    title: "versions"
+  Document.findOne {order: 'timestamp DESC'}, (err, old_doc) ->
+    Document.find {id: params.id}, (err, new_doc) ->
+      render
+        new_doc: new_doc
+        old_doc: old_doc
+        title: "versions"
