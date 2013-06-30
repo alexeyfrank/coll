@@ -2,7 +2,7 @@ load 'application'
 
 
 action 'connect', ->
-  socket(params.documentSessionId).join(params.documentSessionId)
+  custom_socket().join(params.documentSessionId)
   Document.findOne {where: {document_session_id: params.documentSessionId}, order: 'timestamp DESC'}, (err, doc) ->
     socket(params.documentSessionId).emit('document:connect:success', content: doc.content) if doc
 
