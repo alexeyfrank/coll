@@ -62,7 +62,7 @@
     if ($scope.lastChange != data.content)
       cursor = editor.getCursor()
       if (cursor.line >= data.position.line && cursor.ch >= data.position.ch)
-        if cursor.line != data.position.line
+        if cursor.line != parseInt(data.position.line)
           cursor.line = cursor.line + data.posDiff.line
         else  
           cursor.ch = cursor.ch + data.posDiff.ch
