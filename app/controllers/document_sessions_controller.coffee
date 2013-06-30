@@ -6,6 +6,7 @@ action 'show', ->
 
 action 'create', ->
   DocumentSession.create body.DocumentSession, (err, document_session) =>
+    customSocket().join(document_session.id)
     if err
       flash 'error', 'document session can not be created'
       redirect path_to.root

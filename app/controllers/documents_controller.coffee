@@ -3,7 +3,7 @@ load 'application'
 action 'sync', ->
   doc = new Document(params.document)
   doc.save (err) ->
-    io().sockets.in(params.document_session_id).emit 'message',
+    io().sockets.in(params.documentSessionId).emit 'message',
       position: 
         ch: doc.positionCh
         line: doc.positionLine
