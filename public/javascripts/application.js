@@ -8,6 +8,7 @@
       textarea = document.getElementById('text');
       $scope.lastChange = "";
       $scope.needSend = false;
+      $scope.to_version_list = "false";
       $scope.key = new Date().getTime().toString();
       $scope.pos = {
         line: 0,
@@ -57,9 +58,11 @@
               positionLine: cursor.line,
               content: $scope.lastChange,
               timestamp: new Date().getTime(),
-              key: $scope.key
+              key: $scope.key,
+              to_version_list: $scope.to_version_list
             }
           });
+          $scope.to_version_list = "false";
           $scope.pos = {
             line: 0,
             ch: 0
@@ -67,6 +70,9 @@
           return $scope.needSend = false;
         }
       }, 1);
+      setInterval(function() {
+        return $scope.to_version_list = "true";
+      }, 5000);
       $socket.on('document:connect:success', function(data) {
         $scope.lastChange = data.content;
         return editor.setValue(data.content);
