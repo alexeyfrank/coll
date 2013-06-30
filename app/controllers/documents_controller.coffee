@@ -2,15 +2,14 @@ load 'application'
 
 
 action 'connect', ->
-  custom_socket().join(params.documentSessionId)
+  socket(params.documentSessionId).join(params.documentSessionId)
   Document.findOne {where: {document_session_id: params.documentSessionId}, order: 'timestamp DESC'}, (err, doc) ->
-
-    socket().emit('document:connect:success', content: doc.content) if doc
+    socket(params.documentSessionId).emit('document:connect:success', content: doc.content) if doc
 
 action 'sync', ->
   doc = new Document(params.document)
   doc.save (err) ->
-    socket(params.documentSessionId).emit 'message',
+    socket(doc.document_session_id).emit 'message',
       position: 
         ch: doc.positionCh
         line: doc.positionLine
