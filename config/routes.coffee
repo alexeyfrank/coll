@@ -2,6 +2,7 @@ exports.routes = (map)->
   map.root('welcome#index');
 
   map.socket('document:sync', 'documents#sync');
+  map.socket('document:connect', 'documents#connect');
 
   map.resources 'document_sessions'
 

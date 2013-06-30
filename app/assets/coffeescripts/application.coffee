@@ -58,6 +58,14 @@
       $scope.needSend = false
   , 1
 
+  $socket.on 'document:connect:success', (data) ->
+    $scope.lastChange = data.content
+    editor.setValue(data.content)
+
+  $socket.emit 'document:connect',
+    documentSessionId: $('#document-session-id').val()
+
+
   $socket.on 'message', (data) ->
     return if $scope.key == data.key
     if ($scope.lastChange != data.content)

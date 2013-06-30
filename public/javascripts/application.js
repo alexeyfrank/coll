@@ -63,6 +63,13 @@
           return $scope.needSend = false;
         }
       }, 1);
+      $socket.on('document:connect:success', function(data) {
+        $scope.lastChange = data.content;
+        return editor.setValue(data.content);
+      });
+      $socket.emit('document:connect', {
+        documentSessionId: $('#document-session-id').val()
+      });
       return $socket.on('message', function(data) {
         var cursor, newStr, patch;
         if ($scope.key === data.key) {
