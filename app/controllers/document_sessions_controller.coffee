@@ -10,7 +10,7 @@ action 'create', ->
       flash 'error', 'document session can not be created'
       redirect path_to.root
     else
-      flash 'info', 'document session created'
+      flash 'info', 'Создана новая комната! '
       redirect path_to.document_session(document_session.id)
 
 
