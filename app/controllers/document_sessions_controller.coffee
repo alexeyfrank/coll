@@ -1,3 +1,5 @@
+
+
 load 'application'
 
 action 'show', ->
