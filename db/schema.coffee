@@ -8,6 +8,7 @@ Document = describe 'Document', ->
     property 'positionCh', String
     property 'positionLine', String
     property 'key', String
+    property 'to_version_list', String
     set 'restPath', pathTo.documents
 
 DocumentSession = describe 'DocumentSession', ->

@@ -4,7 +4,7 @@ load 'application'
 
 action 'show', ->
   v = 1
-  Document.all {where: {document_session_id: params.id}, order: 'timestamp'}, (err, versions) ->
+  Document.all {where: {id: params.id, to_version_list: "true"}, order: 'timestamp'}, (err, versions) ->
     if versions
       v = versions
 
