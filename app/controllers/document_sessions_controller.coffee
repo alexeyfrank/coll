@@ -12,3 +12,8 @@ action 'create', ->
     else
       flash 'info', 'document session created'
       redirect path_to.document_session(document_session.id)
+
+
+action 'versions', ->
+  render
+    title: "versions"
